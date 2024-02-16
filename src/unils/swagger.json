@@ -1,0 +1,81 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "version": "1.0",
+    "title": "Weather API",
+    "description": "API for retrieving weather information"
+  },
+  "paths": {
+    "/weather": {
+      "get": {
+        "tags": ["Weather"],
+        "summary": "Get weather information by city",
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "name": "city",
+            "in": "query",
+            "required": true,
+            "type": "string",
+            "description": "The name of the city for which to retrieve weather information"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response: received weather for a specific city",
+            "examples": {
+              "application/json": {
+                "coord": { "lon": -0.13, "lat": 51.51 },
+                "weather": [{ "id": 800, "main": "Clear", "description": "clear sky", "icon": "01d" }],
+                "base": "stations",
+                "main": {
+                  "temp": 26.5,
+                  "feels_like": 30.1,
+                  "temp_min": 25.5,
+                  "temp_max": 27.5,
+                  "pressure": 1015,
+                  "humidity": 44,
+                  "sea_level": 1015,
+                  "grnd_level": 1001
+                },
+                "visibility": 10000,
+                "wind": { "speed": 3.6, "deg": 20, "gust": 5.8 },
+                "clouds": { "all": 0 },
+                "dt": 1629960419,
+                "sys": { "type": 2, "id": 2031581, "country": "GB", "sunrise": 1629952543, "sunset": 1630001228 },
+                "timezone": 3600,
+                "id": 2643743,
+                "name": "London",
+                "cod": 200
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request",
+            "examples": {
+              "application/json": {
+                "error": "City parameter is missing"
+              }
+            }
+          },
+          "404": {
+            "description": "Not Found",
+            "examples": {
+              "application/json": {
+                "error": "City not found or weather data not available"
+              }
+            }
+          },
+          "500": {
+            "description": "Internal Server Error",
+            "examples": {
+              "application/json": {
+                "error": "An internal server error occurred"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
