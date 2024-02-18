@@ -5,7 +5,7 @@ import { weatherService } from "../services/weather.service";
 
 class WeatherController {
   public async getWeather(req: Request, res: Response, next: NextFunction) {
-    const city = req.query.q as string;
+    const city = req.query.city as string;
     const lat = +req.query.lat;
     const lon = +req.query.lon;
 

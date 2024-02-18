@@ -9,7 +9,7 @@ class WeatherMiddleware {
     next: NextFunction,
   ) {
     try {
-      const city = req.query.q;
+      const city = req.query.city;
       const lat = +req.query.lon;
       const lon = +req.query.lat;
 

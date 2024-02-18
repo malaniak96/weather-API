@@ -9,7 +9,7 @@
     "/weather": {
       "get": {
         "tags": ["Weather"],
-        "summary": "Get weather information by CITY or CITY LONGITUDE - LATITUDE",
+        "summary": "Get weather information by CITY or CITY LONGITUDE and LATITUDE",
         "consumes": ["application/json"],
         "parameters": [
           {
@@ -23,14 +23,14 @@
             "name": "lat",
             "in": "query",
             "required": false,
-            "type": "string",
+            "type": "number",
             "description": "The Latitude of the city for which to retrieve weather information"
           },
           {
             "name": "lon",
             "in": "query",
             "required": false,
-            "type": "string",
+            "type": "number",
             "description": "The Longitude of the city for which to retrieve weather information"
           }
         ],
