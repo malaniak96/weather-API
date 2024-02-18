@@ -9,15 +9,29 @@
     "/weather": {
       "get": {
         "tags": ["Weather"],
-        "summary": "Get weather information by city",
+        "summary": "Get weather information by CITY or CITY LONGITUDE - LATITUDE",
         "consumes": ["application/json"],
         "parameters": [
           {
             "name": "city",
             "in": "query",
-            "required": true,
+            "required": false,
             "type": "string",
             "description": "The name of the city for which to retrieve weather information"
+          },
+          {
+            "name": "lat",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The Latitude of the city for which to retrieve weather information"
+          },
+          {
+            "name": "lon",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "description": "The Longitude of the city for which to retrieve weather information"
           }
         ],
         "responses": {
@@ -40,6 +54,9 @@
                 },
                 "visibility": 10000,
                 "wind": { "speed": 3.6, "deg": 20, "gust": 5.8 },
+                "rain": {
+                  "1h": 3.16
+                },
                 "clouds": { "all": 0 },
                 "dt": 1629960419,
                 "sys": { "type": 2, "id": 2031581, "country": "GB", "sunrise": 1629952543, "sunset": 1630001228 },
@@ -54,7 +71,7 @@
             "description": "Bad Request",
             "examples": {
               "application/json": {
-                "error": "City parameter is missing"
+                "error": "City parameter or lat and lon is missing"
               }
             }
           },
@@ -62,7 +79,7 @@
             "description": "Not Found",
             "examples": {
               "application/json": {
-                "error": "City not found or weather data not available"
+                "error": "City or Lat/Lon not found or weather data not available"
               }
             }
           },

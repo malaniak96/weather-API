@@ -9,12 +9,20 @@ class WeatherMiddleware {
     next: NextFunction,
   ) {
     try {
-      const city = req.query.city;
+      const city = req.query.q;
+      const lat = +req.query.lon;
+      const lon = +req.query.lat;
 
-      if (!city) {
-        throw new ApiError("City parameter is missing", 400);
+      if (!(city || (lat && lon))) {
+        throw new ApiError("Provide City or Lat and Lon parameters", 400);
       }
 
+      if ((city && (lat || lon)) || (lon && !lat) || (!lon && lat)) {
+        throw new ApiError(
+          "Provide only one parameter: City or Lat and Lon ",
+          400,
+        );
+      }
       next();
     } catch (e) {
       next(e);

@@ -28,11 +28,16 @@ export interface IWeather {
     deg: number;
     gust: number;
   };
+  rain?: {
+    "1h": number;
+  };
   clouds: {
     all: number;
   };
   dt: number;
   sys: {
+    type: number;
+    id: number;
     country: string;
     sunrise: number;
     sunset: number;
